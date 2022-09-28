@@ -18,5 +18,7 @@ module.exports = {
     'arrow-parens': 'off',
     camelcase: 'off',
     'no-param-reassign': 'off',
+    'no-restricted-syntax': 'off',
+    'no-useless-escape': 'off',
   },
 };

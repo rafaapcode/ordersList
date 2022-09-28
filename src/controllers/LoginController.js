@@ -1,5 +1,3 @@
-// import prisma from '../database/PrismaClient.js';
-
 export function loginPage(req, res) {
   res.render('login');
 }
