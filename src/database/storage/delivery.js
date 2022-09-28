@@ -1,6 +1,7 @@
+import bcryptjs from 'bcryptjs';
 import prisma from '../PrismaClient.js';
 
-export default class Storage {
+export default class StorageDelivery {
   constructor(body) {
     this.body = body;
     this.errors = [];
@@ -10,6 +11,13 @@ export default class Storage {
   async storage() {
     this.validate();
     if (this.errors.length > 0) return;
+
+    this.deliveryExists();
+
+    if (this.errors.length > 0) return;
+
+    const salt = bcryptjs.genSaltSync();
+    this.body.password = await bcryptjs.hashSync(this.body.password, salt);
     const newDelivery = await prisma.delivery.create({
       data: {
         ...this.body,
@@ -19,16 +27,22 @@ export default class Storage {
     this.delivery = newDelivery;
   }
 
-  async update() {
-    this.validate();
-    if (this.errors.length > 0) return;
-    const newDelivery = await prisma.delivery.create({
-      data: {
-        ...this.body,
-      },
-    });
+  // async update() {
+  //   this.validate();
+  //   if (this.errors.length > 0) return;
+  //   const newDelivery = await prisma.delivery.create({
+  //     data: {
+  //       ...this.body,
+  //     },
+  //   });
 
-    this.delivery = newDelivery;
+  //   this.delivery = newDelivery;
+  // }
+
+  async deliveryExists() {
+    const delivery = await prisma.delivery.findUnique({ where: { email: this.body.email } });
+
+    if (delivery) this.errors.push('User already exists.');
   }
 
   validate() {
