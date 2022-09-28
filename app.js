@@ -2,7 +2,7 @@ import express from 'express';
 import { join } from 'path';
 import session from 'express-session';
 import flash from 'connect-flash';
-import homeRoute from './src/routes/HomeRoute.js';
+import loginRoute from './src/routes/LoginRoute.js';
 import sessionConfig from './src/config/sessionConfig.js';
 
 class App {
@@ -21,7 +21,7 @@ class App {
   }
 
   routes() {
-    this.app.use('/', homeRoute);
+    this.app.use('/', loginRoute);
   }
 
   views() {
