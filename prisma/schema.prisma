@@ -6,3 +6,27 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Delivery {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  email      String   @unique
+  name       String
+  password   String
+  created_at DateTime @default(now())
+  Orders     Orders[]
+
+  @@map("delivery_guy")
+}
+
+model Orders {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  order      String
+  address    String
+  price      Float
+  created_at DateTime @default(now())
+  delivery   Delivery @relation(fields: [deliveryId], references: [id])
+  deliveryId String   @db.ObjectId
+
+  @@map("order")
+}
