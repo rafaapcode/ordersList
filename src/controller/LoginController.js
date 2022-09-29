@@ -1,4 +1,3 @@
-import DeliveryGuyModel from '../model/DeliveryGuy.js';
 import DeliveryStorage from '../database/DeliveryStorage.js';
 import Validate from '../service/validate.js';
 
@@ -7,11 +6,15 @@ export function loginPage(req, res) {
 }
 
 export async function login(req, res) {
-  const { name, email, password } = req.body;
+  const validate = new Validate(req.body);
+  await validate.validate();
 
-  const newDeliveryGuy = await DeliveryGuyModel.create({ name, email, password });
-
-  res.json(newDeliveryGuy);
+  if (validate.errors.length > 0) {
+    req.flash('errors', validate.errors);
+    req.session.save(() => res.redirect('back'));
+    return;
+  }
+  res.send(req.body);
 }
 
 export async function signup(req, res) {

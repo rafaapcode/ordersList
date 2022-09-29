@@ -7,12 +7,14 @@ export default class Validate {
   }
 
   async validate() {
-    this.#cleanUp();
+    this.#cleanUp(this.body);
     if (!this.#isEmail(this.body.email)) this.errors.push('Email invalid');
 
     if (this.body.password.length < 5) this.errors.push('Password must be between 5 and 50 characters');
 
-    if (this.body.name < 5) this.errors.push('Name must be at least 5 characters.');
+    if (Object.keys(this.body).includes('name')) {
+      if (this.body.name.length < 5) this.errors.push('Name must be at least 5 characters.');
+    }
 
     const deliveryGuy = await DeliveryGuy.getDelivery(this.body.email);
 
@@ -25,7 +27,7 @@ export default class Validate {
     return validateEmail.test(email);
   }
 
-  #cleanUp() {
+  #cleanUp(body) {
     for (const key in this.body) {
       if (typeof this.body[key] !== 'string') {
         this.body[key] = '';
@@ -33,9 +35,7 @@ export default class Validate {
     }
 
     this.body = {
-      email: this.body.email,
-      name: this.body.name,
-      password: this.body.password,
+      ...body,
     };
   }
 }
