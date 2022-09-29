@@ -1,11 +1,29 @@
 import StorageDelivery from '../database/storage/delivery';
+import LoginVerify from '../database/service/loginVerify';
 
 export function loginPage(req, res) {
   res.render('login');
 }
 
-export function login(req, res) {
-  res.send('signin');
+export async function login(req, res) {
+  console.log(req.body);
+  try {
+    const loginDelivery = new LoginVerify(req.body);
+    await loginDelivery.login();
+
+    if (loginDelivery.errors.length > 0) {
+      req.flash('errors', loginDelivery.errors);
+      req.session.save(() => {
+        res.redirect('back');
+      });
+    }
+
+    req.session.deliveryGuy = loginDelivery.delivery;
+    req.session.save(() => res.redirect('/home'));
+  } catch (err) {
+    console.log(err);
+    res.render('404');
+  }
 }
 
 export async function signUp(req, res) {

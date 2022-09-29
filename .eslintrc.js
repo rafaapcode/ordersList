@@ -20,5 +20,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-restricted-syntax': 'off',
     'no-useless-escape': 'off',
+    'no-useless-return': 'off',
   },
 };

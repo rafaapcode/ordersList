@@ -5,6 +5,7 @@ import flash from 'connect-flash';
 import loginRoute from './src/routes/LoginRoute.js';
 import sessionConfig from './src/config/sessionConfig.js';
 import { middleware } from './src/middlewares/middleware.js';
+import homeRoute from './src/routes/homeRoute.js';
 
 class App {
   constructor() {
@@ -24,6 +25,7 @@ class App {
 
   routes() {
     this.app.use('/', loginRoute);
+    this.app.use('/home', homeRoute);
   }
 
   views() {
