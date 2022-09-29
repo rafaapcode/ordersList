@@ -1,12 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-<h1>LOGIN</h1>
-</body>
-</html>
+<%- include('./includes/head.ejs') %>
+
+  <div style="height: 100vh;" class="uk-container uk-container-large uk-flex uk-flex-center uk-background-muted">
+
+    <div class="uk-align-right uk-flex uk-flex-column uk-margin-medium-top">
+
+      <h2 class="uk-text-center">Sign-In</h2>
+
+      <form action="/" method="post">
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input name="email" class="uk-input" placeholder="Email" type="email">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input name="password" class="uk-input" placeholder="Password" type="password">
+          </div>
+        </div>
+
+        <button style="margin-left: 38%;" type="submit" class="uk-button uk-button-text uk-text-medium">Sign-In</button>
+      </form>
+
+      <h2 class="uk-text-center">Sign-Up</h2>
+
+      <form action="" method="post">
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
+            <input name="name" class="uk-input" placeholder="Name" type="text">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input name="email" class="uk-input" placeholder="Email" type="email">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input name="password" class="uk-input" placeholder="Password" type="password">
+          </div>
+        </div>
+
+        <button style="margin-left: 38%;" type="submit" class="uk-button uk-button-text uk-text-medium">Sign-Up</button>
+      </form>
+
+    </div>
+
+  </div>
+
+  <%- include('./includes/footer.ejs') %>
