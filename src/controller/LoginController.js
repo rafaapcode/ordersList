@@ -11,3 +11,7 @@ export async function login(req, res) {
 
   res.json(newDeliveryGuy);
 }
+
+export async function signup(req, res) {
+  res.json(req.body);
+}
