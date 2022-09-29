@@ -6,7 +6,7 @@
 
       <h2 class="uk-text-center">Sign-In</h2>
 
-      <form action="/" method="post">
+      <form action="/login" method="post">
 
         <div class="uk-margin">
           <div class="uk-inline">
@@ -53,8 +53,10 @@
         <button style="margin-left: 38%;" type="submit" class="uk-button uk-button-text uk-text-medium">Sign-Up</button>
       </form>
 
+      <%- include('./includes/message.ejs') %>
+
     </div>
 
   </div>
 
-  <%- include('./includes/footer.ejs') %>
+<%- include('./includes/footer.ejs') %>

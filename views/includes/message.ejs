@@ -1,4 +1,25 @@
-<div style="position: absolute; bottom: 0; right: 25%;" class="uk-alert-danger" uk-alert>
-  <a class="uk-alert-close" uk-close></a>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-</div>
+<%- include('./head.ejs') %>
+  <% if(error.length > 0) {%>
+
+    <div style="position: absolute; bottom: 0; right: 25%; width: 38%;" class="uk-alert-danger" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <% error.forEach(err => {%>
+        <p> <%= err %> </p>
+      <%})%>
+    </div>
+
+  <%}%>
+
+
+  <% if(success.length > 0) {%>
+
+    <div style="position: absolute; bottom: 0; right: 25%; width: 38%;" class="uk-alert-success" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <% success.forEach(msg => {%>
+        <p> <%= msg %> </p>
+      <%})%>
+    </div>
+
+  <%}%>
+
+<%- include('./footer.ejs') %>

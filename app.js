@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import sessionConfig from './src/config/sessionConfig.js';
 import loginRoute from './src/routes/loginRoute.js';
+import middlewareMessages from './src/middlewares/middleware.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ class App {
     this.app.use(express.json());
     this.app.use(flash());
     this.app.use(session(sessionConfig));
+    this.app.use(middlewareMessages.middleware);
     this.app.set('port', 3000);
   }
 
