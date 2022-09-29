@@ -12,7 +12,7 @@ export default class StorageDelivery {
     this.validate();
     if (this.errors.length > 0) return;
 
-    this.deliveryExists();
+    await this.deliveryExists();
 
     if (this.errors.length > 0) return;
 
@@ -27,18 +27,6 @@ export default class StorageDelivery {
     this.delivery = newDelivery;
   }
 
-  // async update() {
-  //   this.validate();
-  //   if (this.errors.length > 0) return;
-  //   const newDelivery = await prisma.delivery.create({
-  //     data: {
-  //       ...this.body,
-  //     },
-  //   });
-
-  //   this.delivery = newDelivery;
-  // }
-
   async deliveryExists() {
     const delivery = await prisma.delivery.findUnique({ where: { email: this.body.email } });
 
@@ -49,8 +37,8 @@ export default class StorageDelivery {
     this.clean();
 
     if (!this.verifyEmail(this.body.email)) this.errors.push('Email invalid');
-    if (!this.body.name.length < 5) this.errors.push('Name must be at least 5 characters.');
-    if (!this.body.password.length < 7) this.errors.push('Password must be at least 7 characters.');
+    if (this.body.name.length < 5) this.errors.push('Name must be at least 5 characters.');
+    if (this.body.password.length < 7) this.errors.push('Password must be at least 7 characters.');
   }
 
   verifyEmail(email) {

@@ -1,0 +1,25 @@
+
+<%- include('./head.ejs') %>
+
+<% if(error.length > 0) {%>
+
+  <div class="ms-5 alert alert-danger w-50" role="alert">
+    <% error.forEach(error => {%>
+        <%= error %> <br>
+    <%})%>
+  </div>
+
+<%}%>
+
+<% if(success.length > 0) {%>
+
+  <div class="alert alert-success w-50" role="alert">
+    <% success.forEach(msg => {%>
+        <%= msg %> <br>
+    <%})%>
+  </div>
+
+<%}%>
+
+
+<%- include('./footer.ejs') %>

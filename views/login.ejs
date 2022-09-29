@@ -1,11 +1,13 @@
 <%- include('./includes/head.ejs') %>
 
   <div style="height: 70vh;" class="container-fluid">
-    <p class="text-center mt-5 display-3">Sign-In or Sign-Up</p>
+    <p class="text-center mt-3 display-4">Sign-In or Sign-Up</p>
+
+    <%- include('./includes/messages.ejs') %>
 
     <div class="col d-flex justify-content-center align-items-center">
 
-      <form action="/login" method="post" class="mt-5 d-flex w-25">
+      <form action="/login" method="post" class="mt-2 d-flex w-25">
         <div class="h-50 d-flex flex-column justify-content-between">
 
           <div class="mb-3">
@@ -24,22 +26,22 @@
 
       </form>
 
-      <form style="margin-top: 10%; margin-left: 10%;" action="" method="post" class="d-flex w-25">
+      <form style="margin-top: 10%; margin-left: 10%;" action="/signup" method="post" class="d-flex w-25">
         <div class="h-50 d-flex flex-column justify-content-between">
 
           <div class="mb-3 w-100 ">
             <label for="exampleInputPassword1" class="form-label">Name</label>
-            <input style="width: 150%;" type="password" class="form-control shadow" id="exampleInputPassword1">
+            <input style="width: 150%;" name="name" type="text" class="form-control shadow" id="exampleInputPassword1">
           </div>
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input style="width: 150%;" type="email" class="form-control shadow" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input style="width: 150%;" name="email" type="email" class="form-control shadow" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input style="width: 150%;" type="password" class="form-control shadow" id="exampleInputPassword1">
+            <input style="width: 150%;" name="password" type="password" class="form-control shadow" id="exampleInputPassword1">
           </div>
 
           <button style="width: 150%;" type="submit" class="btn btn-primary shadow">Sign-Up</button>

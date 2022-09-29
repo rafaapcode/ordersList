@@ -4,6 +4,7 @@ import session from 'express-session';
 import flash from 'connect-flash';
 import loginRoute from './src/routes/LoginRoute.js';
 import sessionConfig from './src/config/sessionConfig.js';
+import { middleware } from './src/middlewares/middleware.js';
 
 class App {
   constructor() {
@@ -18,6 +19,7 @@ class App {
     this.app.use(express.json());
     this.app.use(flash());
     this.app.use(session(sessionConfig));
+    this.app.use(middleware);
   }
 
   routes() {
