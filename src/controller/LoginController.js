@@ -29,10 +29,6 @@ export async function login(req, res) {
   req.session.save(() => res.redirect('/home'));
 }
 
-// export function logout(req, res) {
-
-// }
-
 export async function signup(req, res) {
   try {
     const validate = new Validate(req.body);
