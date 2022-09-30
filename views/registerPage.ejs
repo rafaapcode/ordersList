@@ -2,8 +2,41 @@
 
 <%- include('./includes/navbar.ejs') %>
 
+  <div class="uk-container-large uk-flex uk-flex-center uk-margin-large-top">
+    <form style="width: 25%;" action="/register/registerorder" method="post">
+      <div class="uk-margin">
+          <div style="width: 100%;" class="uk-inline">
+              <a class="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
+              <input value="<%= order.client_name %>" name="client_name" placeholder="Client name" class="uk-input" type="text">
+          </div>
+      </div>
 
-  <h1>Bem vindo ao registro</h1>
+      <div class="uk-margin">
+          <div style="width: 100%;" class="uk-inline">
+              <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: home"></a>
+              <input value="<%= order.client_address %>" name="client_address" placeholder="Client address" class="uk-input" type="text">
+          </div>
+      </div>
 
+      <div class="uk-margin">
+        <div style="width: 100%;" class="uk-inline">
+            <a class="uk-form-icon" href="#" uk-icon="icon:  file-text"></a>
+            <input value="<%= order.order %>" name="order" placeholder="Order" class="uk-input" type="text">
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <div style="width: 100%;" class="uk-inline">
+            <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon:  cart"></a>
+            <input value="<%= order.price %>" name="price" placeholder="Price" class="uk-input" type="number">
+        </div>
+      </div>
+
+      <button type="submit" style="margin-left: 33%;" class="uk-button uk-button-primary">Register</button>
+
+    </form>
+
+    <%- include('./includes/message.ejs') %>
+  </div>
 
 <%- include('./includes/footer.ejs') %>

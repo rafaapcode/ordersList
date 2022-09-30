@@ -7,26 +7,30 @@ export function loginPage(req, res) {
 }
 
 export async function login(req, res) {
-  const validate = new Validate(req.body);
-  const checkEmailPassword = new CheckEmailPassword(req.body);
-  await validate.validate();
+  try {
+    const validate = new Validate(req.body);
+    const checkEmailPassword = new CheckEmailPassword(req.body);
+    await validate.validate();
 
-  if (validate.errors.length > 0) {
-    req.flash('errors', validate.errors);
-    req.session.save(() => res.redirect('back'));
-    return;
+    if (validate.errors.length > 0) {
+      req.flash('errors', validate.errors);
+      req.session.save(() => res.redirect('back'));
+      return;
+    }
+
+    await checkEmailPassword.checkEmailPassword();
+
+    if (checkEmailPassword.errors.length > 0) {
+      req.flash('errors', checkEmailPassword.errors);
+      req.session.save(() => res.redirect('back'));
+      return;
+    }
+
+    req.session.deliveryguy = checkEmailPassword.delivery;
+    req.session.save(() => res.redirect('/home'));
+  } catch (e) {
+    res.render('404');
   }
-
-  await checkEmailPassword.checkEmailPassword();
-
-  if (checkEmailPassword.errors.length > 0) {
-    req.flash('errors', checkEmailPassword.errors);
-    req.session.save(() => res.redirect('back'));
-    return;
-  }
-
-  req.session.deliveryguy = checkEmailPassword.delivery;
-  req.session.save(() => res.redirect('/home'));
 }
 
 export async function signup(req, res) {
