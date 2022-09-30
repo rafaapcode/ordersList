@@ -8,6 +8,7 @@ import sessionConfig from './src/config/sessionConfig.js';
 import loginRoute from './src/routes/loginRoute.js';
 import homeRoute from './src/routes/homeRoute.js';
 import logoutRoute from './src/routes/logoutRoute.js';
+import registerRoute from './src/routes/registerOrderRoute.js';
 import middlewareMessages from './src/middlewares/middleware.js';
 
 dotenv.config();
@@ -34,6 +35,7 @@ class App {
     this.app.use('/', loginRoute);
     this.app.use('/home', homeRoute);
     this.app.use('/logout', logoutRoute);
+    this.app.use('/register', registerRoute);
   }
 
   views() {

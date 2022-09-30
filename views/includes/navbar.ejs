@@ -1,0 +1,25 @@
+<%- include('./head.ejs') %>
+
+<nav class="uk-navbar-container" uk-navbar="align: center">
+  <div class="uk-navbar-center">
+
+      <ul class="uk-navbar-nav">
+          <li>
+              <a href="#">Menu</a>
+              <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                      <li><a href="/home">Home</a></li>
+                      <li><a href="/logout">Logout</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li class="uk-nav-header"></li>
+                      <li><a href="#">Item</a></li>
+                  </ul>
+              </div>
+          </li>
+      </ul>
+
+  </div>
+
+</nav>
+
+<%- include('./footer.ejs') %>
