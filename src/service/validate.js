@@ -14,11 +14,11 @@ export default class Validate {
 
     if (Object.keys(this.body).includes('name')) {
       if (this.body.name.length < 5) this.errors.push('Name must be at least 5 characters.');
+
+      const deliveryGuy = await DeliveryGuy.getDelivery(this.body.email);
+
+      if (deliveryGuy) this.errors.push('User already exists.');
     }
-
-    const deliveryGuy = await DeliveryGuy.getDelivery(this.body.email);
-
-    if (deliveryGuy) this.errors.push('User already exists.');
   }
 
   #isEmail(email) {
