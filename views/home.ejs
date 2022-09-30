@@ -12,7 +12,11 @@
   <div class="uk-width-expand">
         <h2 class="uk-text-center">ORDERS</h2>
         <div uk-sortable="group: sortable-group">
+
+          <% allOrders.forEach(order => {%>
+
             <div class="uk-margin uk-background-muted">
+
                 <div class="uk-card uk-card-default uk-card-body uk-card-small">
 
                   <table class="uk-table">
@@ -28,19 +32,21 @@
                     <tbody>
                         <tr>
                             <td><h4><%= user.name %></h4></td>
-                            <td>Table Data</td>
-                            <td>Table Data</td>
-                            <td>Table Data</td>
-                            <td>Table Data</td>
-                            <td><a class="uk-link-text uk-text-primary" href="">Edit</a></td>
-                            <td><a class="uk-link-text uk-text-danger" href="">Delete</a></td>
+                            <td><%= order.client_name %></td>
+                            <td><%= order.client_address %></td>
+                            <td><%= order.order %></td>
+                            <td><%= order.price %> R$</td>
+                            <td><a class="uk-link-text uk-text-primary" href="/register/index/<%= order._id %>">Edit</a></td>
+                            <td><a class="uk-link-text uk-text-danger" href="/register/delete/<%= order._id %>">Delete</a></td>
                         </tr>
                     </tbody>
                   </table>
 
                 </div>
+
+            </div>
+          <% })%>
         </div>
-  </div>
 
 
 

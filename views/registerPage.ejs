@@ -3,7 +3,12 @@
 <%- include('./includes/navbar.ejs') %>
 
   <div class="uk-container-large uk-flex uk-flex-center uk-margin-large-top">
-    <form style="width: 25%;" action="/register/registerorder" method="post">
+
+    <% if(order._id) {%>
+      <form style="width: 25%;" action="/register/edit/<%= order._id %>" method="post">
+    <%} else {%>
+      <form style="width: 25%;" action="/register/registerorder" method="post">
+    <%}%>
       <div class="uk-margin">
           <div style="width: 100%;" class="uk-inline">
               <a class="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
@@ -28,7 +33,7 @@
       <div class="uk-margin">
         <div style="width: 100%;" class="uk-inline">
             <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon:  cart"></a>
-            <input value="<%= order.price %>" name="price" placeholder="Price" class="uk-input" type="number">
+            <input value="<%= order.price %>" name="price" placeholder="Price" class="uk-input" type="number" step="any">
         </div>
       </div>
 

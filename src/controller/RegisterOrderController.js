@@ -35,3 +35,30 @@ export async function index(req, res) {
 
   return res.render('registerPage', { order });
 }
+
+export async function edit(req, res) {
+  try {
+    const verifyFields = Object.values(req.body).some(value => value === '');
+    if (verifyFields) {
+      req.flash('errors', 'Fill all the fields.');
+      req.session.save(() => res.redirect('back'));
+      return;
+    }
+
+    if (!req.params.id) res.render('404');
+
+    const { _id } = await OrderStorage.update(req.params.id, req.body);
+
+    req.flash('success', 'Successfully edited order');
+    req.session.save(() => res.redirect(`/register/index/${_id}`));
+  } catch (e) {
+    res.render('404');
+  }
+}
+
+export async function remove(req, res) {
+  await OrderStorage.delete(req.params.id);
+
+  req.flash('success', 'Order deleted successfully.');
+  req.session.save(() => res.redirect('back'));
+}

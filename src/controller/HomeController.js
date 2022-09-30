@@ -1,7 +1,7 @@
-export function homePage(req, res) {
-  res.render('home');
-}
+import OrderStorage from '../database/OrdersStorage.js';
 
-export function tete(req, res) {
-  res.send('nada');
+export default async function homePage(req, res) {
+  const allOrders = await OrderStorage.allOrders();
+
+  res.render('home', { allOrders });
 }

@@ -24,4 +24,10 @@ export default class Order {
 
     return order;
   }
+
+  static async allOrders() {
+    const orders = await OrderModel.find();
+
+    return orders;
+  }
 }
