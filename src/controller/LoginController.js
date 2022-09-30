@@ -26,8 +26,12 @@ export async function login(req, res) {
   }
 
   req.session.deliveryguy = checkEmailPassword.delivery;
-  res.send(req.body);
+  req.session.save(() => res.redirect('/home'));
 }
+
+// export function logout(req, res) {
+
+// }
 
 export async function signup(req, res) {
   try {

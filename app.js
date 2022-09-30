@@ -6,6 +6,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import sessionConfig from './src/config/sessionConfig.js';
 import loginRoute from './src/routes/loginRoute.js';
+import homeRoute from './src/routes/homeRoute.js';
+import logoutRoute from './src/routes/logoutRoute.js';
 import middlewareMessages from './src/middlewares/middleware.js';
 
 dotenv.config();
@@ -30,6 +32,8 @@ class App {
 
   routes() {
     this.app.use('/', loginRoute);
+    this.app.use('/home', homeRoute);
+    this.app.use('/logout', logoutRoute);
   }
 
   views() {
