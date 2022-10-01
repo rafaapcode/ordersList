@@ -4,3 +4,11 @@ exports.middleware = (req, res, next) => {
   res.locals.user = req.session.deliveryguy;
   next();
 };
+
+exports.loginRequired = (req, res, next) => {
+  if (!req.session.deliveryguy) {
+    return req.session.save(() => res.redirect('back'));
+  }
+
+  return next();
+};
