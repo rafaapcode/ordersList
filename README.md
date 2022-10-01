@@ -24,4 +24,4 @@
 
 #### Arquitetura
 - Utilizei MVC como arquitetura, pois ainda estou estudando outras para colocar em prática nos próximos projetos.
-- Também fiz o uso do repository patterns, que é abstração das operações do nosso banco de dados, em um arquivo. 
+- Também fiz o uso do repository patterns, que é abstração das operações do nosso banco de dados em um arquivo.
