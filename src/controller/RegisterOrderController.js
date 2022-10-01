@@ -31,8 +31,6 @@ export async function index(req, res) {
 
   if (!order) return res.render('404');
 
-  console.log(order);
-
   return res.render('registerPage', { order });
 }
 
@@ -49,7 +47,7 @@ export async function edit(req, res) {
 
     const { _id } = await OrderStorage.update(req.params.id, req.body);
 
-    req.flash('success', 'Successfully edited order');
+    req.flash('success', 'Successfully edited order.');
     req.session.save(() => res.redirect(`/register/index/${_id}`));
   } catch (e) {
     res.render('404');
@@ -57,8 +55,12 @@ export async function edit(req, res) {
 }
 
 export async function remove(req, res) {
-  await OrderStorage.delete(req.params.id);
+  try {
+    await OrderStorage.delete(req.params.id);
 
-  req.flash('success', 'Order deleted successfully.');
-  req.session.save(() => res.redirect('back'));
+    req.flash('success', 'Order deleted successfully.');
+    req.session.save(() => res.redirect('back'));
+  } catch (e) {
+    res.render('404');
+  }
 }
