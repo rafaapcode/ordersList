@@ -45,10 +45,10 @@ export async function edit(req, res) {
 
     if (!req.params.id) res.render('404');
 
-    const { _id } = await OrderStorage.update(req.params.id, req.body);
+    await OrderStorage.update(req.params.id, req.body);
 
     req.flash('success', 'Successfully edited order.');
-    req.session.save(() => res.redirect(`/register/index/${_id}`));
+    req.session.save(() => res.redirect(`/register/index/${req.params.id}`));
   } catch (e) {
     res.render('404');
   }

@@ -8,7 +8,7 @@ export default class Order {
   }
 
   static async update(id, body) {
-    const newOrder = await OrderModel.findOneAndUpdate(id, body, { new: true });
+    const newOrder = await OrderModel.findByIdAndUpdate(id, body, { new: true });
 
     return newOrder;
   }
